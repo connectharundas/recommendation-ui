@@ -23,7 +23,6 @@
   },
   "proxy": "http://localhost:3001",
   "scripts": {
-    "api": "json-server db.json -p 3001 --delay 1500",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
