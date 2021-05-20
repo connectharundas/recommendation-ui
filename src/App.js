@@ -12,7 +12,9 @@ function App() {
     <Layout style={{ minHeight: '100vh' }}>
         <Layout className="site-layout">
           <Header className="site-layout-background">
-             <span style={{fontSize: '50px', margin: '32%', fontFamily: 'Fantasy', fontWeight: '900'}}>Recommendations </span>
+             <span style={{fontSize: '50px', margin: '32%', fontFamily: 'Fantasy', fontWeight: '900'}}>
+               Recommendations 
+               </span>
           </Header>
           <Home/>
           <Footer style={{ textAlign: 'center' }}></Footer>

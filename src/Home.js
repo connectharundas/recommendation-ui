@@ -7,7 +7,6 @@ import { encode as base64_encode } from 'base-64';
 
 const { Content } = Layout;
 const { Option } = Select;
-
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -28,10 +27,18 @@ function Home() {
 
     const onFinish = () => {
         setLoading(true)
-        const url = "https://crm-nightly-new.cc.capillarytech.com/api_gateway/v1/recommendations/userattribute/trending";
+        let url = null;
+      
+        const urlObject = new URL(`https://crm-nightly-new.cc.capillarytech.com/api_gateway/v1/recommendations/userattribute/trending`, window.location.href);
+        urlObject.searchParams.append('agegroup', '{start:' + startAge + ",end:" + endAge +'}');
+        urlObject.searchParams.append('fashiontype', '{upper:shirt,lower:pant}');
+        urlObject.searchParams.append('gender', gender);
+        urlObject.searchParams.append('limit', 3);
+        urlObject.searchParams.append('offset', 0);
+        
+        url = urlObject.toString();
         const username = "test.till.2";
         const password = MD5("Test@123");
-
         const requestOptions = {
             method: 'GET',
             headers: {
@@ -40,16 +47,11 @@ function Home() {
                 'X-CAP-API-AUTH-ORG-ID': 50104,
                 'Accept': 'application/json',
                 'Authorization': 'Basic ' + base64_encode(username + ":" + password)
-            },
-            params: {
-                'agegroup': encodeURIComponent('{start:' + startAge + ',end:' + endAge + '}'),
-                'fashiontype': encodeURIComponent('{upper:shirt,lower:pant}'),
-                'gender': gender,
-                'limit': 3,
-                'offset': 0
             }
         }
-        fetch(url, {requestOptions})
+
+        console.log("request options : ", requestOptions)
+        fetch(url, requestOptions)
             .then(resp => {
                 if (!resp.ok) {
                     throw Error("Could not fetch data for that resource");
@@ -100,10 +102,10 @@ function Home() {
     function handleGenderChange(value) {
         console.log(`selected ${value}`);
         switch (value) {
-            case 1:
+            case "1":
                 setGender("M")
                 break;
-            case 2:
+            case "2":
                 setGender("F")
                 break;
             default:
@@ -143,6 +145,7 @@ function Home() {
                             <Option value="2">18-25</Option>
                             <Option value="3">26-35</Option>
                             <Option value="4">36-45</Option>
+                            <Option value="5">More than 45</Option>
                         </Select>
                     </Form.Item>
 
