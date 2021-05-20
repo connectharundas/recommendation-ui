@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import "antd/dist/antd.css";
 import { Layout, Modal, Card, Spin, Form, Button, Select } from 'antd';
 import './index.css';
-import MD5 from "crypto-js/md5";
-import { encode as base64_encode } from 'base-64';
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -28,30 +26,14 @@ function Home() {
     const onFinish = () => {
         setLoading(true)
         let url = null;
-      
-        const urlObject = new URL(`https://crm-nightly-new.cc.capillarytech.com/api_gateway/v1/recommendations/userattribute/trending`, window.location.href);
-        urlObject.searchParams.append('agegroup', '{start:' + startAge + ",end:" + endAge +'}');
-        urlObject.searchParams.append('fashiontype', '{upper:shirt,lower:pant}');
-        urlObject.searchParams.append('gender', gender);
-        urlObject.searchParams.append('limit', 3);
-        urlObject.searchParams.append('offset', 0);
-        
-        url = urlObject.toString();
-        const username = "test.till.2";
-        const password = MD5("Test@123");
-        const requestOptions = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CAP-API-AUTH-ENTITY-ID': 123,
-                'X-CAP-API-AUTH-ORG-ID': 50104,
-                'Accept': 'application/json',
-                'Authorization': 'Basic ' + base64_encode(username + ":" + password)
-            }
-        }
 
-        console.log("request options : ", requestOptions)
-        fetch(url, requestOptions)
+        const urlObject = new URL(`/recommendations/userattribute/trending`, window.location.href);
+        urlObject.searchParams.append('agegroup', '{start:' + startAge + ",end:" + endAge + '}');
+        urlObject.searchParams.append('gender', gender);
+
+        url = urlObject.toString();
+
+        fetch(url)
             .then(resp => {
                 if (!resp.ok) {
                     throw Error("Could not fetch data for that resource");
@@ -65,6 +47,7 @@ function Home() {
                 setLoading(false);
             });
     };
+
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -114,6 +97,10 @@ function Home() {
     }
 
     const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
         setIsModalVisible(false);
     };
 
@@ -174,7 +161,7 @@ function Home() {
                 </Form>
             }
 
-            <Modal title="Here are your recommendations !!" visible={isModalVisible} onOk={handleOk}>
+            <Modal title="Here are your recommendations !!" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                 <p style={{ alignItems: "center" }}>Age:{endAge}</p>
                 <p>Gender:{gender === "F" ? "Female" : "Male"}</p>
                 <Card bordered={true} style={{ width: 300, marginLeft: '18%' }}>

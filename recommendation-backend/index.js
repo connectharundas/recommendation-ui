@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 let request = require('request');
 
-app.get("/api", (req, res) => {
+app.get("/recommendations/userattribute/trending", (req, res) => {
   console.log("query param ;", req.query.agegroup);
     callme(res,req.query);
   });
