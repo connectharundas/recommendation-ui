@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import "antd/dist/antd.css";
 import './index.css';
-
 import Home from './Home';
 import { Layout } from 'antd';
 
-import { Modal, Button } from 'antd';
-
 const { Header, Footer } = Layout;
-
 
 function App() {
 

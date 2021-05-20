@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import "antd/dist/antd.css";
-import { Layout, Modal, Card, Spin, Result, Form, Button, Select } from 'antd';
+import { Layout, Modal, Card, Spin, Form, Button, Select } from 'antd';
 import './index.css';
 import MD5 from "crypto-js/md5";
-import ShowFailure from './component/ShowFailure';
 import { encode as base64_encode } from 'base-64';
 
 const { Content } = Layout;
@@ -26,12 +25,10 @@ function Home() {
     const [data, setData] = useState([]);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isLoading, setLoading] = useState(false)
-    const [result, setResult] = useState(false)
-
 
     const onFinish = () => {
         setLoading(true)
-        const url = "http://localhost:3000/api_gateway/v1/recommendations/userattribute/trending";
+        const url = "https://crm-nightly-new.cc.capillarytech.com/api_gateway/v1/recommendations/userattribute/trending";
         const username = "test.till.2";
         const password = MD5("Test@123");
 
@@ -39,7 +36,7 @@ function Home() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CAP-API-AUTH-ORG-ID': 123,
+                'X-CAP-API-AUTH-ENTITY-ID': 123,
                 'X-CAP-API-AUTH-ORG-ID': 50104,
                 'Accept': 'application/json',
                 'Authorization': 'Basic ' + base64_encode(username + ":" + password)
@@ -108,6 +105,7 @@ function Home() {
                 break;
             case 2:
                 setGender("F")
+                break;
             default:
                 break;
         }
@@ -186,14 +184,6 @@ function Home() {
                     })}
                 </Card>
             </Modal>
-            {result ?
-                <div>
-                    <Result
-                        status="500"
-                        subTitle="Sorry, something went wrong."
-                        extra={<Button type="primary">Back Home</Button>}
-                    />
-                </div> : ''}
         </Content>
     );
 }
