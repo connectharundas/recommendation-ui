@@ -1,0 +1,80 @@
+{
+  "List":{
+    "status": {
+        "success": true,
+        "code": 200
+    },
+    "group": "TEST",
+    "boxType": "trending",
+    "totalResults": 3,
+    "recommendedItems": {
+        "items": [
+            {
+                "sku": "111308358",
+                "score": 65.319725,
+                "rank": 1,
+                "values": {
+                    "name": "Vanilla cream coffee",
+                    "description": "",
+                    "categories": [
+                        "shirt",
+                        "pant"
+                    ],
+                    "image": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "smallImage": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "productUrl": ""
+                }
+            },
+            {
+                "sku": "111308357",
+                "score": 63.319725,
+                "rank": 2,
+                "values": {
+                    "name": "Berry Smoothie",
+                    "description": "",
+                    "categories": [
+                        "shirt",
+                        "stripes"
+                    ],
+                    "image": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "smallImage": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "productUrl": ""
+                }
+            },
+            {
+                "sku": "111308349",
+                "score": 60.319725,
+                "rank": 3,
+                "values": {
+                    "name": "Iced Latte Coffee",
+                    "description": "",
+                    "categories": [
+                        "jeans"
+                    ],
+                    "image": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "smallImage": {
+                        "label": "",
+                        "url": ""
+                    },
+                    "productUrl": ""
+                }
+            }
+        ]
+    }
+  }
+}
