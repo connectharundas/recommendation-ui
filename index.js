@@ -5,7 +5,8 @@ let request = require('request');
 const path = require("path");
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../client/build')));
+console.log("path : ", path.resolve(__dirname, './client/build'));
+app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.get("/recommendations/userattribute/trending", (req, res) => {
   console.log("query param ;", req.query.agegroup);
