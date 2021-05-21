@@ -162,8 +162,8 @@ function Home() {
             }
 
             <Modal title="Here are your recommendations !!" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-                <p style={{ alignItems: "center" }}>Age:{endAge}</p>
-                <p>Gender:{gender === "F" ? "Female" : "Male"}</p>
+                <p style={{ alignItems: "center" }}>Age: {endAge === 17 ? "Less than 18": endAge === 100? "More than 45": endAge}</p>
+                <p>Gender: {gender === "F" ? "Female" : "Male"}</p>
                 <Card bordered={true} style={{ width: 300, marginLeft: '18%' }}>
 
                     {data.map((data, key) => {
