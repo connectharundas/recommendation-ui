@@ -2,9 +2,10 @@ const express = require("express");
 const PORT = process.env.PORT || 3001;
 const app = express();
 let request = require('request');
+const path = require("path");
 
 // Have Node serve the files for our built React app
-app.use(express.static(__dirname + '../client/build'));
+app.use(express.static(path.resolve(__dirname, '../client/build')));
 
 app.get("/recommendations/userattribute/trending", (req, res) => {
   console.log("query param ;", req.query.agegroup);
