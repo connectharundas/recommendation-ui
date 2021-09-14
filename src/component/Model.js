@@ -6,6 +6,7 @@ function Model({isVisible}) {
   console.log('is model visible: ', isVisible)
   let [sd, setVisible] = useState(isVisible);
   console.log("sd", sd)
+  console.log("saine")
 
   const handleOk = () => {
     setVisible(false);
